@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>variables cheatsheet</title>
+</head>
+<body>
+    <p id="nameprint"></p>
+
+    <p id="calculation">0</p>
+
+    <p id="nameprint_templi"> </p>
+
+
+    <script>
+        //vår første javascript kommentarer. og under, vår aller første variabel: 
+        const firstname = "kristoffer"
+        //skriver ut firstname til konsollen
+        console.log(firstname)
+        //skriver ut firstname til HTML, med kontaktinering
+        document.getElementById("nameprint").innerHTML = "Hei " + firstname
+        //skriver ut firstname til HMTL med template literal (tekstmal)
+
+        document.getElementById("nameprint_templi").innerHTML = `hei ${firstname} går det bra med deg?` 
+        
+        //skrive ut et enkelt mattestykke
+
+        document.getElementById("calculation").innerHTML= 10 + 5 
+
+        
+
+
+
+
+    </script>
+</body>
+</html>
