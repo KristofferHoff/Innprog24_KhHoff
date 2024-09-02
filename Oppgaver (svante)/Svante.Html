@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Svantes karakter</title>
+</head>
+<body>
+    <h1>Svantes karakter</h1>
+    <p id="resultat"></p>
+
+
+    <script> 
+// først: registrere svantes resultater på deleksamen 
+
+var deleksamen1 = 79;
+var deleksamen2 = 82;
+var deleksamen3 = 71;
+var deleksamen4 = 84; 
+
+
+// vi oppretter en teller = 0, for å kunne telle antall eksamner
+var antallEksamnerBestått = 0;
+
+// så må vi skjekke hver deleksamen for å skjekke om det ble beståt
+// Pro tip: i en eksamen kan du skruve (jeg forutser at det ikke er mulighet å få desimal karakterer her (så du viser forståelse ovenfor valgene))
+if (deleksamen1 >= 40) {
+    antallEksamnerBestått++;
+}
+if (deleksamen2 >= 40){
+    antallEksamnerBestått++;
+}
+if (deleksamen3 >= 40){
+    antallEksamnerBestått++;
+}
+if (deleksamen4 >= 40){
+    antallEksamnerBestått++;
+}
+
+
+// vi skjekker om alle deleksamner er bestått
+if(antallEksamnerBestått === 4){
+
+
+
+//regne ut karakterer
+var sumDeleksamner = deleksamen1 + deleksamen2 + deleksamen3 + deleksamen4;
+//lager først en tom variabel som skal inneholde karakter: 
+var karakter; 
+
+if (sumDeleksamner > 360) {
+    karakter = "A";
+} else if (sumDeleksamner > 320){
+    Karakter = "B";
+} else if (sumDeleksamner > 240){
+    karakter = "C";
+} else if (sumDeleksamner > 200){
+    karakter = "D";
+} else if (sumDeleksamner >= 160){
+    karakter = "E";
+} else {
+    karakter = "F";
+}
+// skrive ut resultatet av kurset 
+document.getElementById("resultat").innerHTML = "Svante har bestått kruset med karakter" + karakter;
+
+
+
+
+
+// her skal ta imot og skrive ut resultat (ta bort dette for å se faktiske karakteren, ellers blir karakteren sattt som "Var resultat = "C")
+        var resultat = "C"
+ 
+        if (resultat === "F") {
+
+            document.getElementById("resultat").innerHTML = "Svante har ikke bestått kruset";
+        } else {
+            document.getElementById("resultat").innerHTML = "Svante har bestått kurset med karakter " + resultat; 
+        }
+
+      
+} // avslutter  If-test om antalleksamnerbestått
+
+else {
+    document.getElementById("resultat").innerHTML = "svante har ikke bestått alle deleksamner, og derfor ikke bestått kurset";
+}
+
+
+
+    </script>
+</body>
+</html>
