@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telle barn</title>
+</head>
+<body>
+
+<p id="antall_gutter">test</p>
+<p id="antall_jenter">test</p>
+
+<script>
+
+let barn1 = "gutt"
+let barn2 = "jente"
+let barn3 = "gutt"
+
+let antall_gutter = 0
+let antall_jenter = 0
+
+if (barn1 === "gutt") {
+    antall_gutter = antall_gutter +1
+} else {
+    antall_jenter = antall_jenter +1
+} 
+if (barn2 === "gutt") {
+    antall_gutter = antall_gutter +1
+} else  {
+    antall_jenter = antall_jenter +1
+}
+if (barn1 === "gutt") {
+    antall_gutter = antall_gutter +1
+} else  {
+    antall_jenter = antall_jenter +1
+}
+
+console.log(antall_gutter)
+console.log(antall_jenter)
+
+document.getElementById("antall_gutter").innerHTML = "mengden gutter: " + antall_gutter
+document.getElementById("antall_jenter").innerHTML = "mengden jente: " + antall_jenter
+
+</script>
+
+
+
+
+    
+</body>
+</html>
