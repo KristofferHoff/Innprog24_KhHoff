@@ -162,7 +162,7 @@
         document.getElementById("celle3").addEventListener("click", function() {
             spill(3);
         });
-        document.getElementById("celle4").addEventLner("click", function() {
+        document.getElementById("celle4").addEventListener("click", function() {
             spill(4);
         });
         document.getElementById("celle5").addEventListener("click", function() {
@@ -191,7 +191,7 @@
                 var cellSpace = document.getElementById("celle"+celle).innerHTML;
             
                 //Hvis den er ledig...
-                ifff(cellSpace === "") 
+                if(cellSpace === "") 
                     //...sjekk hvilken spiller sin tur det er, og plasser riktig symbol på spillerbrettet
                     if (player === 1) {
                         //Plasser symbol på spillerbrettet i nettleseren
@@ -237,12 +237,14 @@
                     document.getElementById("player").innerHTML = player;
                     document.getElementById("playermark").innerHTML = playermark;
                 }
+
+
             //Hvis spillstatus er false, avslutter vi funksjonen uten å utføre noen handlinger.
             } else {
-                /Så returnerer vi spillet
+                //Så returnerer vi spillet
                 return;
             }
-        }
+        
 
         function sjekkVinner() {
             var rundenVunnet = false;
