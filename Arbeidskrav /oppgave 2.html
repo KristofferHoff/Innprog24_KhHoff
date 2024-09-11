@@ -183,7 +183,7 @@
         //Når en rute er trykket på, skal vi kjøre funksjonen spill. Denne inneholder prosessen 
         //datamaskinen må gå gjennom for å sjekke om ruten er ledig, og om den er det plassere
         //riktig spillerbrikke i ruten avhengig av hvilken spiller det er som klikker på ruten:
-        function spill(celle) {
+        function spill(celle) 
             //Hvis spillstatus er true, er det lov å spille, og vi kan gjennomføre spillerhandlinger
             if(spillStatus === true) {
                 //Er cellen ledig? Vi må sjekke hvilken celle som er trykket på,
@@ -240,6 +240,7 @@
 
 
             //Hvis spillstatus er false, avslutter vi funksjonen uten å utføre noen handlinger.
+            if (player) {
             } else {
                 //Så returnerer vi spillet
                 return;
