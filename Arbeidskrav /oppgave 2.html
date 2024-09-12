@@ -183,15 +183,15 @@
         //Når en rute er trykket på, skal vi kjøre funksjonen spill. Denne inneholder prosessen 
         //datamaskinen må gå gjennom for å sjekke om ruten er ledig, og om den er det plassere
         //riktig spillerbrikke i ruten avhengig av hvilken spiller det er som klikker på ruten:
-        function spill(celle) 
+        function spill(celle) {
             //Hvis spillstatus er true, er det lov å spille, og vi kan gjennomføre spillerhandlinger
             if(spillStatus === true) {
                 //Er cellen ledig? Vi må sjekke hvilken celle som er trykket på,
                 //for så å sjekke om innholdet er en tom streng:
                 var cellSpace = document.getElementById("celle"+celle).innerHTML;
-            
+                
                 //Hvis den er ledig...
-                if(cellSpace === "") 
+                if(cellSpace === "") {
                     //...sjekk hvilken spiller sin tur det er, og plasser riktig symbol på spillerbrettet
                     if (player === 1) {
                         //Plasser symbol på spillerbrettet i nettleseren
@@ -210,11 +210,16 @@
                         document.getElementById("playerturn").innerHTML = "Uavgjort! Ingen vant...";
                         spillStatus = false;
                     }
-                    
+
+                    setTimeout(function() {
+                       sjekkVinner();
+                          }, 1000);
+                      
                     //Når brikken er plassert på spillerbrettet, må vi sjekke om den - og brikkene rundt - 
                     //utgjør en vinnerkombinasjon. Denne funksjonaliteten ligger i funksjonen sjekkVinner(),
                     //siden dette er et litt større sett med handlinger og kan gi noen ulike utfall.
-                    sjekkVinner();
+                    sjekkVinner(); 
+
 
                 //Men, hvis cellen ikke er ledig...
                 } else {
@@ -237,15 +242,12 @@
                     document.getElementById("player").innerHTML = player;
                     document.getElementById("playermark").innerHTML = playermark;
                 }
-
-
             //Hvis spillstatus er false, avslutter vi funksjonen uten å utføre noen handlinger.
-            if (player) {
             } else {
-                //Så returnerer vi spillet
+               //Så returnerer vi spillet
                 return;
             }
-        
+        }
 
         function sjekkVinner() {
             var rundenVunnet = false;
@@ -280,6 +282,8 @@
                 //Skriv ut hvilken spiller som har vunnet
                 document.getElementById("playerturn").innerHTML = "Spiller " + player + " har vunnet!";
                 //Gjør restart spill-knappen synlig
+                document.getElementById("playerturn").style.backgroundColor = "#FFD700";
+
                 document.getElementById("newgame").style.display = "block";
                 //Sett spillstatus til false, slik at ingen spillere får plassere
                 //flere brikker på brettet - dette løses med sjekken i funksjonen spill()
