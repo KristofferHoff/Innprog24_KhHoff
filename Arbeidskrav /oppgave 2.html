@@ -210,11 +210,12 @@
                         document.getElementById("playerturn").innerHTML = "Uavgjort! Ingen vant...";
                         spillStatus = false;
                     }
-
+                    //Her har jeg satt inn settimeout så det tar et sekund før koden sier hvem som har vunnet
                     setTimeout(function() {
                        sjekkVinner();
                           }, 1000);
-                      
+
+
                     //Når brikken er plassert på spillerbrettet, må vi sjekke om den - og brikkene rundt - 
                     //utgjør en vinnerkombinasjon. Denne funksjonaliteten ligger i funksjonen sjekkVinner(),
                     //siden dette er et litt større sett med handlinger og kan gi noen ulike utfall.
@@ -279,10 +280,24 @@
 
             //Hvis runden er vunnet, skal vi gjøre noen handlinger:
             if(rundenVunnet === true) {
-                //Skriv ut hvilken spiller som har vunnet
+            
+                //Her har jeg endret bakrunnsfarget i div med å sette inn koden
+               
+
+
                 document.getElementById("playerturn").innerHTML = "Spiller " + player + " har vunnet!";
                 //Gjør restart spill-knappen synlig
-                document.getElementById("playerturn").style.backgroundColor = "#FFD700";
+             
+ document.getElementById("playerturn").style.backgroundColor = "#FFD700"; 
+ 
+
+
+
+
+                //Her har jeg endret bakrunnsfarget i div med å sette inn koden
+                
+
+    
 
                 document.getElementById("newgame").style.display = "block";
                 //Sett spillstatus til false, slik at ingen spillere får plassere
@@ -291,6 +306,8 @@
             }
         }
 
+
+        
         //Når et spill er avsluttet, og et nytt skal begynne, må vi gjøre klar en del ting:
         // 1) Fjerne brikkene som er plassert på brettet - både i grensesnittet og i programmet vårt
         // 2) Sette spillstatus til true, slik at vi får lov til å trykke på rutene i spillbrettet igjen
@@ -313,6 +330,7 @@
             // 4)
             document.getElementById("playerturn").innerHTML = 'Spiller <span id="player">1</span> (<span id="playermark">X</span>) sin tur:';
         }
+
     </script>
 </body>
 
