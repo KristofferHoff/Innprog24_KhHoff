@@ -280,21 +280,40 @@
 
             //Hvis runden er vunnet, skal vi gjøre noen handlinger:
             if(rundenVunnet === true) {
-            
-                //Her har jeg endret bakrunnsfarget i div med å sette inn koden
-               
 
 
+
+                //her har jeg satt inn koden, sånn at det tar et sekund før vinneren vises.
+                setTimeout(function() {
+                       sjekkVinner();
+                          }, 1000);
+
+        
                 document.getElementById("playerturn").innerHTML = "Spiller " + player + " har vunnet!";
                 //Gjør restart spill-knappen synlig
              
- document.getElementById("playerturn").style.backgroundColor = "#FFD700"; 
+
+
+                //Her har jeg satt inn koden, så det blir en gullfarge når en spiller vinner.
+                document.getElementById("playerturn").style.backgroundColor = "#FFD700"; 
  
 
 
 
 
                 //Her har jeg endret bakrunnsfarget i div med å sette inn koden
+                document.getElementById("celle0").style.color = "#FFD700";
+                document.getElementById("celle1").style.color = "#FFD700";
+                document.getElementById("celle2").style.color = "#FFD700";
+                document.getElementById("celle3").style.color = "#FFD700";
+                document.getElementById("celle4").style.color = "#FFD700";
+                document.getElementById("celle5").style.color = "#FFD700";
+                document.getElementById("celle6").style.color = "#FFD700";
+                document.getElementById("celle7").style.color = "#FFD700";
+                document.getElementById("celle8").style.color = "#FFD700";
+
+              
+
                 
 
     
