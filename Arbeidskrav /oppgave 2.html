@@ -211,15 +211,13 @@
                         spillStatus = false;
                     }
                     //Her har jeg satt inn settimeout så det tar et sekund før koden sier hvem som har vunnet
-                    setTimeout(function() {
-                       sjekkVinner();
-                          }, 1000);
+                    const myTimeout = setTimeout(sjekkVinner, 1000);
 
 
                     //Når brikken er plassert på spillerbrettet, må vi sjekke om den - og brikkene rundt - 
                     //utgjør en vinnerkombinasjon. Denne funksjonaliteten ligger i funksjonen sjekkVinner(),
                     //siden dette er et litt større sett med handlinger og kan gi noen ulike utfall.
-                    sjekkVinner(); 
+                    //sjekkVinner(); 
 
 
                 //Men, hvis cellen ikke er ledig...
@@ -232,17 +230,7 @@
                 //Når spillerens tur er ferdig, er det neste spillers tur.
                 //Det viser vi ved å sette variabelen "player" til 2 hvis den var 1 denne turen, eller hvis den var 2, sett tilbake til 1.
                 //På samme måte må spillersymbolet veksles mellom X og O.
-                if (player === 1) {
-                    player = 2;
-                    playermark = "O";
-                } else {
-                    player = 1;
-                    playermark = "X";
-                }
-                if(spillStatus === true) {
-                    document.getElementById("player").innerHTML = player;
-                    document.getElementById("playermark").innerHTML = playermark;
-                }
+            
             //Hvis spillstatus er false, avslutter vi funksjonen uten å utføre noen handlinger.
             } else {
                //Så returnerer vi spillet
@@ -278,55 +266,45 @@
                 }
             }
 
+           
+
             //Hvis runden er vunnet, skal vi gjøre noen handlinger:
             if(rundenVunnet === true) {
 
-
-
-                //her har jeg satt inn koden, sånn at det tar et sekund før vinneren vises.
-                setTimeout(function() {
-                       sjekkVinner();
-                          }, 1000);
 
         
                 document.getElementById("playerturn").innerHTML = "Spiller " + player + " har vunnet!";
                 //Gjør restart spill-knappen synlig
              
+                    document.getElementById("newgame").style.display = "Block";
 
-
-                //Her har jeg satt inn koden, så det blir en gullfarge når en spiller vinner.
+                //Her har jeg satt inn koden, så det blir en gullfarge når en spiller vinner. oppgave 2!!
                 document.getElementById("playerturn").style.backgroundColor = "#FFD700"; 
- 
+
+                //Her har jeg satt inn koden slik at den vinnende komboen kommer fram med gull!
+                document.getElementById("celle"+vinnerKomboPlass1).style.color = "#FFD700"
+                document.getElementById("celle"+vinnerKomboPlass2).style.color = "#FFD700"
+                document.getElementById("celle"+vinnerKomboPlass3).style.color = "#FFD700"
 
 
+                 //Når spillerens tur er ferdig, er det neste spillers tur.
+                //Det viser vi ved å sette variabelen "player" til 2 hvis den var 1 denne turen, eller hvis den var 2, sett tilbake til 1.
+                //På samme måte må spillersymbolet veksles mellom X og O.
+                        }
+                        if (player === 1) {
+                    player = 2;
+                    playermark = "O";
+                } else {
+                    player = 1;
+                    playermark = "X";
+                }
+                if(spillStatus === true) {
+                    document.getElementById("player").innerHTML = player;
+                    document.getElementById("playermark").innerHTML = playermark;
+                }
 
+                    }
 
-                //Her har jeg endret bakrunnsfarget i div med å sette inn koden
-                document.getElementById("celle0").style.color = "#FFD700";
-                document.getElementById("celle1").style.color = "#FFD700";
-                document.getElementById("celle2").style.color = "#FFD700";
-                document.getElementById("celle3").style.color = "#FFD700";
-                document.getElementById("celle4").style.color = "#FFD700";
-                document.getElementById("celle5").style.color = "#FFD700";
-                document.getElementById("celle6").style.color = "#FFD700";
-                document.getElementById("celle7").style.color = "#FFD700";
-                document.getElementById("celle8").style.color = "#FFD700";
-
-              
-
-                
-
-    
-
-                document.getElementById("newgame").style.display = "block";
-                //Sett spillstatus til false, slik at ingen spillere får plassere
-                //flere brikker på brettet - dette løses med sjekken i funksjonen spill()
-                spillStatus = false;
-            }
-        }
-
-
-        
         //Når et spill er avsluttet, og et nytt skal begynne, må vi gjøre klar en del ting:
         // 1) Fjerne brikkene som er plassert på brettet - både i grensesnittet og i programmet vårt
         // 2) Sette spillstatus til true, slik at vi får lov til å trykke på rutene i spillbrettet igjen
@@ -348,6 +326,10 @@
             playermark = "X";
             // 4)
             document.getElementById("playerturn").innerHTML = 'Spiller <span id="player">1</span> (<span id="playermark">X</span>) sin tur:';
+
+
+            //Så fargen resettes ved ny start!
+            document.getElementById("Playerturn").style.backgroundColor = "transparent";
         }
 
     </script>
