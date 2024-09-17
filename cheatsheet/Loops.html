@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops cheat sheet</title>
+</head>
+<body>
+
+    <h1>Regn ut summen av alle tall mellom <span id="Start">X</span> Og <span id="Stopp">Y</span></h1>
+    <p id="utregning"></p>
+    <h1>Vis alle heltall som er delig på <span id="Deltall">z </span>mellom <span id="Delstart">X</span> og <span id="Delstopp">Y</span></h1>
+    <p id="Delresultater"></p>
+
+    <script>
+        /*
+            For-løkke trenger tre parametere
+            1) startpunkt (hvor den starter å telle)
+            2) stopp-punkt
+            3) utregning av teller
+        */
+
+
+        for(let teller = 1; teller <=10; teller++) {
+            console.log(teller)
+        }
+
+        //While-løkker (imens/så lenge løkker)
+        let whileteller = 3
+        while(whileteller < 15) {
+            console.log("jeg kjører fortsatt: " + whileteller)
+            whileteller++
+        }
+
+
+
+        //utregnign av alle tall mellom X og Y
+        const X = 9
+        const Y = 200
+        let sum = 0
+
+        document.getElementById("Start").innerHTML = X
+        document.getElementById("Stopp").innerHTML = Y
+
+
+        for(let teller = X; teller <= Y; teller++){
+            sum += teller
+
+        if(teller === Y) {
+            document.getElementById("utregning").innerHTML += teller + " = " + sum
+        } else {
+             document.getElementById("utregning").innerHTML += teller + " + "
+        }
+    
+        }
+
+        // vis heltall som er delelige på Z
+
+        const z = 3
+
+        document.getElementById("Delstart").innerHTML = X
+        document.getElementById("DelStopp").innerHTML = Y
+        document.getElementById("Deltall").innerHTML = z
+
+
+
+        for(let teller = X; teller <= Y; teller++){
+            if(teller % z === 0){
+                document.getElementById("Delresultater").innerHTML += teller + " , "
+            }
+        }
+
+    </script>
+
+
+
+
+
+</body>
+</html>
