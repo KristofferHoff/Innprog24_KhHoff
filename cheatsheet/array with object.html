@@ -39,7 +39,21 @@
                 courses: ["designmetoder", "UI designprosjekt"]
             }
         ]
-
+                  /*
+         vi skal skrive ut hver foreleser i arrayen som et liste punkt <li>
+            vi må gå igjennom hele arrayen, det gjør vi med metoden: .map
+            når vi mapper må vi mellomlagre element i en variable: lecturer
+            for hver lecturer må vi legge til en <li> i <ul id = "profiles">
+        */
+          lecturers.map(lecturer => document.getElementById("profiles").innerHTML += `<li>${lecturer.personname}
+                <ul>
+                    ${lecturer.courses.map(course => `<li>${course}</li>`).join("")}
+                </ul>
+            </li>`)  
+            /*
+            dersom vi bruker .map på en array med kun tekststrenger må vi bruke metoden .join etter vi har kjørt .map
+            for å fjerne .map's komma generening
+            */  
 
 
         //document.getElementById("contactinfo").innerHTML = `${lecturer.personname} sitter på kontor ${lecturer.office}. Epost: ${lecturer.email}. Favorittkurset hans er ${lecturer.courses[0]}.`
