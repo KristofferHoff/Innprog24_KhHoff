@@ -210,7 +210,7 @@
                         document.getElementById("playerturn").innerHTML = "Uavgjort! Ingen vant...";
                         spillStatus = false;
                     }
-                    //Her har jeg satt inn settimeout så det tar et sekund før koden sier hvem som har vunnet! oppgave 3!
+                    //Her har jeg satt inn settimeout så det tar et sekund før koden sier hvem som har vunnet
                     const myTimeout = setTimeout(sjekkVinner, 1000);
 
 
@@ -281,7 +281,7 @@
                 //Her har jeg satt inn koden, så det blir en gullfarge når en spiller vinner. oppgave 2!!
                 document.getElementById("playerturn").style.backgroundColor = "#FFD700"; 
 
-                //Her har jeg satt inn koden slik at den vinnende komboen kommer fram med gull! oppgave 4!
+                //Her har jeg satt inn koden slik at den vinnende komboen kommer fram med gull!
                 document.getElementById("celle"+vinnerKomboPlass1).style.color = "#FFD700"
                 document.getElementById("celle"+vinnerKomboPlass2).style.color = "#FFD700"
                 document.getElementById("celle"+vinnerKomboPlass3).style.color = "#FFD700"
@@ -317,8 +317,6 @@
             var celleteller = 0;
             while (celleteller < 9) {
                 document.getElementById("celle" + celleteller).innerHTML = "";
-                //tilbakestiller fargen til hvit!
-                document.getElementById("celle" + celleteller).style.color = "fff"
                 celleteller++;
             }
             // 2)
