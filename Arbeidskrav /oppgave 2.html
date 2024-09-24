@@ -318,7 +318,7 @@
             while (celleteller < 9) {
                 document.getElementById("celle" + celleteller).innerHTML = "";
                 //tilbakestiller fargen til hvit!
-                document.getElementById("celle" + celleteller).style.color = "fff"
+                document.getElementById("celle" + celleteller).style.color = "#fff"
                 celleteller++;
             }
             // 2)
@@ -331,7 +331,8 @@
 
 
             //Så fargen resettes ved ny start!
-            document.getElementById("Playerturn").style.backgroundColor = "transparent";
+            document.getElementById("playerturn").style.backgroundColor = "";
+            
         }
 
     </script>
