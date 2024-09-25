@@ -67,6 +67,19 @@
             color: white;
             cursor: pointer;
         }
+
+        #scoreboard {
+            color: #2c3e50;
+            font-size: 2em;
+            text-align: center;
+            margin: 20px auto;
+            background-color: #000000;
+            padding: 10px;
+            border-radius: 5px;
+            width: 600px;
+            border: 6px solid #34495e;
+    }
+
     </style>
 
 </head>
@@ -87,6 +100,10 @@
     <button id="newgame" onclick="restartGame()">Start spill på nytt</button>
 
     <script>
+// oppgave 5:
+        var spiller1Seire = 0;
+        var spiller2Seire = 0;
+
         /* For å forstå hvorfor vi har celle-IDene 0 - 8 i HTML-koden over:
         I alle programmeringsspråk brukes arrayer for å lagre strukturert informasjon.
         I arrayer kan alt som lagres hentes ved å bruke indexen til plasseringen noe er lagret.
@@ -264,9 +281,10 @@
                     rundenVunnet = true;
                     break;
                 }
+
+                
             }
 
-           
 
             //Hvis runden er vunnet, skal vi gjøre noen handlinger:
             if(rundenVunnet === true) {
@@ -285,6 +303,18 @@
                 document.getElementById("celle"+vinnerKomboPlass1).style.color = "#FFD700"
                 document.getElementById("celle"+vinnerKomboPlass2).style.color = "#FFD700"
                 document.getElementById("celle"+vinnerKomboPlass3).style.color = "#FFD700"
+
+
+                //oppgave 5, legge til en teller på skjerm!
+
+                if (player === 1) {
+                 spiller1Seire++;
+                document.getElementById("spiller1Seire").innerHTML = spiller1Seire;
+                 } else {
+                 spiller2Seire++;
+                 document.getElementById("spiller2Seire").innerHTML = spiller2Seire;
+                }
+
 
 
                  //Når spillerens tur er ferdig, er det neste spillers tur.
