@@ -37,7 +37,7 @@
             border: 6px solid #2c3e50;
             border-radius: 10px;
             display: grid;
-            grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+            grid-template: repeat(4, 1fr) / repeat(4, 1fr);
         }
         
         .celle {
@@ -83,6 +83,13 @@
         <div id="celle6" class="celle"></div>
         <div id="celle7" class="celle"></div>
         <div id="celle8" class="celle"></div>
+        <div id="celle9" class="celle"></div>
+        <div id="celle10" class="celle"></div>
+        <div id="celle11" class="celle"></div>
+        <div id="celle12" class="celle"></div>
+        <div id="celle13" class="celle"></div>
+        <div id="celle14" class="celle"></div>
+        <div id="celle15" class="celle"></div>
     </section>
     <button id="newgame" onclick="restartGame()">Start spill på nytt</button>
 
@@ -125,16 +132,24 @@
         //(indexer i spillerBrikker-arrayen)
         //som utgjør vinnerkombinasjoner. Disse lagrer vi i en array med 2 nivåer 
         //(en array, som inneholder nye arrayer med vinnerkombinasjonene)
-        var winningCombos = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ];
+        
+     var winningCombos = [
+    // Rader
+    [0, 1, 2, 3],
+    [4, 5, 6, 7],
+    [8, 9, 10, 11],
+    [12, 13, 14, 15],
+    // Kolonner
+    [0, 4, 8, 12],
+    [1, 5, 9, 13],
+    [2, 6, 10, 14],
+    [3, 7, 11, 15],
+    // Diagonaler
+    [0, 5, 10, 15],
+    [3, 6, 9, 12]
+];
+
+        
         //Disse kan vi nå vise til ved å si winningCombos[0]. Variabelen winningCombos[0] inneholder nå en array med verdiene [0, 1, 2].
         //Viser vi til winningCombos[0][1] viser vi til index 1 i den første arrayen på nivå 2. Den innholder verdien 1. Denne verdien
         //refererer til index 1 i spillerBrikker-arrayen under, eller spillbrettplassering med id 1
@@ -143,7 +158,7 @@
         //trenger vi en oversikt over Spillbrettplasseringer. Disse kan vi lagre i en array, siden vi fra
         //starten av koden så at spillbrettet kan tenkes på som indexer i en array.
         //Vi lager klar en oversikt, en array, med 9 tomme plasseringer vi senere kan fylle med spillervalg.
-        var spillerBrikker = ["","","","","","","","",""];
+        var spillerBrikker = ["","","","","","","","","","","","","","","",""];
 
         //Videre trenger vi å registrere når en spiller klikker på en rute i spillbrettet.
         //Når en spiller klikker på en rute, skal vi få noe til å skje i koden, derfor kaller vi
@@ -177,6 +192,29 @@
         document.getElementById("celle8").addEventListener("click", function() {
             spill(8);
         });
+        document.getElementById("celle9").addEventListener("click", function() {
+         spill(9);
+        });
+        document.getElementById("celle10").addEventListener("click", function() {
+        spill(10);
+        });
+        document.getElementById("celle11").addEventListener("click", function() {
+        spill(11);
+        });
+        document.getElementById("celle12").addEventListener("click", function() {
+        spill(12);
+        });
+        document.getElementById("celle13").addEventListener("click", function() {
+        spill(13);
+        });
+        document.getElementById("celle14").addEventListener("click", function() {
+        spill(14);
+        });
+        document.getElementById("celle15").addEventListener("click", function() {
+        spill(15);
+        });
+
+        
 
         
 
@@ -243,24 +281,28 @@
             //Vi må sjekke etter vinner for hver brikke som plasseres på brettet.
             // Dette gjør vi ved å gå gjennom alle vinnerkombinasjonene, og
             //sjekke om brikkene på spillbrettet er like ved indexene til vinnerkombinasjonene:
-            for(var combination = 0; combination <= 7; combination++) {
+            for(var combination = 0; combination < winningCombos.length; combination++) {
                 var vinnerKomboPlass1 = winningCombos[combination][0]; //Henter ut plassering av vinnerkombinasjonens rad 1, eksempel winningCombos[0][0] første runde, som inneholder verdien 0.
                 var vinnerKomboPlass2 = winningCombos[combination][1];
-                var vinnerKomboPlass3 = winningCombos[combination][2]
+                var vinnerKomboPlass3 = winningCombos[combination][2];
+                var vinnerKomboPlass4 = winningCombos[combination][3];
 
                 var brikke1 = spillerBrikker[vinnerKomboPlass1]; //Henter ut verdien (spillmerket) på indexen til første vinnerkombinasjonsplass fra spillerBrikker, eksempel spillerBrikker[0] første runde.
                 var brikke2 = spillerBrikker[vinnerKomboPlass2];
                 var brikke3 = spillerBrikker[vinnerKomboPlass3];
+                var brikke4 = spillerBrikker[vinnerKomboPlass4];
+                
 
                 //Hvis en av plassene i vinnerkombinasjonen er tom, er det ikke vunnet noe.
                 //Da kan løkken bare fortsette å kjøre.
-                if(brikke1 === "" || brikke2 === "" || brikke3 === "") {
+                if(brikke1 === "" || brikke2 === "" || brikke3 === "" || brikke4 === "") {
+                     {
                     continue;
                 }
 
                 //Hvis brikke1 er det samme som brikke 2, og brikke 2 er det samme som
                 //brikke3, er alle like, og vi har en vinnerkombinasjon. Da 
-                if(brikke1 === brikke2 && brikke2 === brikke3) {
+                if(brikke1 === brikke2 && brikke2 === brikke3 && brikke3 === brikke4) {
                     rundenVunnet = true;
                     break;
                 }
@@ -285,6 +327,7 @@
                 document.getElementById("celle"+vinnerKomboPlass1).style.color = "#FFD700"
                 document.getElementById("celle"+vinnerKomboPlass2).style.color = "#FFD700"
                 document.getElementById("celle"+vinnerKomboPlass3).style.color = "#FFD700"
+                document.getElementById("celle"+vinnerKomboPlass4).style.color = "#FFD700"
 
 
                  //Når spillerens tur er ferdig, er det neste spillers tur.
@@ -313,9 +356,9 @@
         //Dette samler vi i en funksjon, slik at vi kan kalle funksjonen og utføre alle disse tingene når vi trenger det:
         function restartGame() {
             // 1)
-            spillerBrikker = ["","","","","","","","",""];
+            spillerBrikker = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
             var celleteller = 0;
-            while (celleteller < 9) {
+            while (celleteller < 16) {
                 document.getElementById("celle" + celleteller).innerHTML = "";
                 celleteller++;
             }
@@ -329,7 +372,7 @@
 
 
             //Så fargen resettes ved ny start!
-            document.getElementById("Playerturn").style.backgroundColor = "transparent";
+            document.getElementById("playerturn").style.backgroundColor = "transparent";
         }
 
     </script>
