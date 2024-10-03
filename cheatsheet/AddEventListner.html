@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AddEventListner cheat sheet</title>
+
+    <style>
+        body{
+            padding: 50px;
+        }
+
+        button{
+            font-size: 40px;
+            padding: 20px;
+            cursor: pointer;
+        }
+        .green{
+            background-color: green;
+            color: white;
+        }
+        .red{
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <button id="knapp" class="green">Trykk på meg</button>
+
+    <script>
+       document.addEventListener("mousemove", function(event){
+        console.log(event)
+       })
+
+       //For å slippe å skrive Document.getElementById("knapp") hele tiden, og heller bare skrive knapp!
+       const knapp = document.getElementById("knapp")
+       //endre tekst og farge på knapp, når musepekeren er over knappen.
+       knapp.addEventListener("mouseover", function(){
+            knapp.innerHTML = "Neei!, ikke trykk på meg!"
+            knapp.classList.add("red")
+            knapp.classList.remove("green")
+       })
+    //for å tilbakestille "knappen" når musepekeren ikke lenger er over knappen
+       knapp.addEventListener("mouseout", function(){
+        knapp.innerHTML = "Trykk på meg"
+        knapp.classList.add("green")
+        knapp.classList.remove("red")
+       })
+    </script>
+</body>
+</html>
