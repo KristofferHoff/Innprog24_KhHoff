@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stoppeklokke</title>
+
+    <style>
+        body{
+            background-color: lightgray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #sec{
+            font-size: 200px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin: 2rem;
+            flex-wrap: wrap;
+        }
+        #start{
+            padding: 20px;
+            background-color: green;
+        }
+        #stop{
+            padding: 20px;
+            background-color: red;
+        }
+        
+    </style>
+</head>
+<body>
+    <main>
+   <p id="sec">0</p>
+   <p>Sekunder</p>
+
+   <button id="start">Start (S)</button>
+   <button id="stop" disabled>Stop (E)</button>
+   
+    </main>
+    <script>
+        //HTML-elementer:
+        const secPrint = document.getElementById("sec")
+        const buttonstart = document.getElementById("start")
+        const buttonstop = document.getElementById("stop")
+
+        //konfigurasjon:
+        let Seconds = 0
+        let status = false
+
+        function counter() {
+            if(status === true){
+                Seconds++
+            secPrint.innerHTML = Seconds
+            setTimeout(counter, 1000)
+        }
+            }
+
+            function start() {
+                status = true
+            buttonstart.disabled = true
+            buttonstop.disabled = false
+           counter()
+            }
+
+            function stop() {
+                buttonstart.disabled = false
+                buttonstop.disabled = true
+                status = false
+            }
+             
+
+        buttonstart.addEventListener("click", start)
+
+
+        buttonstop.addEventListener("click", function(){
+            buttonstart.disabled = false
+            status = false
+            
+        })
+
+        document.addEventListener("keydown", function(event){
+            if(event.key === "s"){
+                start()
+            }
+            if(event.key === "e") {
+                stop()
+            }
+        })
+    </script>
+</body>
+</html>
