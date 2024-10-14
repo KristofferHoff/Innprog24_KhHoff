@@ -11,18 +11,17 @@
 
     <script>
 
-        const far = 37;
-        const mor = 32;
-        const datter = 7;
-        const sønn = 2;
-
-        const Totalalder = far+mor+datter+sønn
-        const Familiemedlemmer = 4
-        const Gjennomsnittsalder = Totalalder/Familiemedlemmer
-
-        document.getElementById("gjennomsnitt").innerHTML= "gjennomsnitts alderen i familien er " Gjennomsnittsalder + " år"       
-
-
+        const dad = 37
+        const mom = 32
+        const daughter = 7
+        const son = 2
+    
+        const totalAge = dad + mom + daughter + son
+    
+        const averageAge = totalAge / 4
+    
+        document.getElementById("gjennomsnitt").innerHTML = averageAge + "er familiens gjennomsnittsalder"
+    
     </script>
     
 </body>
