@@ -1,21 +1,134 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karakterkalkulator</title>
+    <title>Arbeidskrav 3</title>
+
+    <style>
+        button{
+            background-color: #ffd700;
+            padding: 1rem;
+        }
+        label{
+            padding: 1rem;
+            display: flex;
+            background-color: aliceblue;
+        
+        }
+       
+        
+        
+    </style>
 </head>
 <body>
-    <h1>Karakterkalkulator</h1>
-    <label for="poengOppgave1">Poeng oppgave 1 (maks 10):</label>
-    <input type="number" id="poengOppgave1" max="10" required>
-    <br>
-    <label for="poengOppgave2">Poeng oppgave 2 (maks 12):</label>
-    <input type="number" id="poengOppgave2" max="12" required>
-    <br>
-    <button id="beregnKnapp" disabled>Beregn karakter</button>
-    <h2 id="resultat"></h2>
 
-    <script src="scrpit.js"></script>
+    <form>
+        <label>Poeng på oppgave 1</label>
+        <input id="oppgave1" type="number" max="10" required>
+
+        <label> Poeng på oppgave 2</label>
+        <input id="oppgave2" type="number" max="12" required>
+
+        <button type="button" onClick="calculate()">Beregn karakter</button>
+
+    </form>
+
+    <section>
+        <h2>Din karakter: <span id="Karakter"></span></h2>
+        <p></p>
+    </section>
+  
+
+
+    <script>
+
+       
+
+const grades = [
+    {grade: "F", treshold: 0},
+    {grade: "E", treshold: 25},
+    {grade: "D", treshold: 44},
+    {grade: "C", treshold: 68},
+    {grade: "B", treshold: 88},
+    {grade: "A", treshold: 100}
+   ]
+
+/*console.log(grades[5].treshold); */
+
+/*(0.3 * (PoengOppgave1 / MaksimaltPoengOppgave1 * 100)) + (0.7 * (PoengOppgave2 / MaksimaltPoengOppgave2 * 100))*/
+
+function calculate(){
+
+
+const oppgave1 = document.getElementById("oppgave1").value;
+const oppgave2 = document.getElementById("oppgave2").value;
+console.log(oppgave1 + " oppgave 1")
+console.log(oppgave2 + " oppgave 2")
+const MaksimaltPoengOppgave1 = 10
+const MaksimaltPoengOppgave2 = 12
+    
+       /*if (grade > 24){
+                text = `du får karakter ${grade} med ${treshold} poeng`
+          } 
+         else if (grade = "E"){
+                if(treshold > 44){ 
+                    text = `Du får ${grade} med ${treshold} poeng`
+                } else(treshold > 68) {
+                    text = `Du får ${grade} med ${treshold} poeng`
+                }
+            } else(treshold > 88) {
+                text = `Du får ${grade} med ${treshold} poeng`
+            } if(treshold > 100){
+                text = 'Du får' ${grade} 'med' ${treshold} 'poeng'
+            }
+            document.getElementById("karakter").innerHTML = text*/
+
+
+        const karakter = document.getElementById("Karakter");
+        const utregning =(0.3 * (oppgave1 / MaksimaltPoengOppgave1 * 100)) + (0.7 * (oppgave2 / MaksimaltPoengOppgave2 * 100))
+        console.log(utregning + "yupp")
+            if(utregning < grades[1].treshold){
+                karakter.innerHTML = `${grades[0].grade}`
+                console.log("Den første if'en er sann")
+            }
+            else if(utregning >= grades[1].treshold && utregning < grades[2].treshold){
+                karakter.innerHTML = `${grades[1].grade}`
+                console.log("Den andre if'en er sann")
+            }
+            else if(utregning <= grades[2].treshold && utregning < grades[3].treshold){
+                karakter.innerHTML = `${grades[2].grade}`
+                console.log("Den tredje if'en er sann")
+            }
+            else if(utregning <= grades[3].treshold && utregning < grades[4].treshold){
+                karakter.innerHTML = `${grades[3].grade}`
+                console.log("Den fjerde if'en er sann")
+            }
+           else if(utregning <= grades[4].treshold && utregning < grades[5].treshold){
+                karakter.innerHTML = `${grades[4].grade}`
+                console.log("Den femte if'en er sann")
+            }
+            else if(utregning <= grades[5].treshold)
+                karakter.innerHTML = `${grades[5].grade}`
+                console.log("Den sjette if'en er sann")
+    console.log(grades);
+}
+
+   
+   
+    calculate()
+
+
+
+
+/*for (let i = 0; 1 < 6; i++){
+    console.log(arrayOfObjects[i])
+    
+}*/
+
+
+
+
+    </script>
 </body>
 </html>
