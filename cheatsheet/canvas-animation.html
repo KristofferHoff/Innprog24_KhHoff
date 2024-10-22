@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas animation cheet sheet</title>
+    <style>
+        body{
+            background: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        canvas{
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    
+    <canvas id="anim-area"></canvas>
+
+    <script>
+        //canvas konfigurasjon:
+        const c = document.getElementById("anim-area")
+        c.width = 900;
+        c.height = 600;
+        const ctx = c.getContext("2d")
+
+        // definerer startpunkter:
+        let x = 100;
+
+        //RequestAnimationFrame : automatiser nye bildetegninger
+        const RequestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.
+        mozRequestAnimationFrame
+
+        //definer startpunkter:
+        const circle = {
+        x: 100,
+        y: 100,
+        r: 15
+        }
+
+        // rekursiv funksjon som kaller seg selv avhengig av skjerm/nettleser den vises i
+        function frames(){
+            // Tøm frame for ny opptegning
+            ctx.clearRect(0, 0, c.width,c.height)
+
+           
+            //tegne en sirkel: 100, 100 betyr plassering på canvas (cordinater) (første tallet forteller x aksen og derfor andre tallet y aksen) 15 tallet er piksler størelse på sirkelen.
+            ctx.beginPath();
+            ctx.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.closePath();
+            
+            //rekursivt kall: altså kalle på seg selv
+            if(circle.x < c.width - circle.r){
+                circle.x = circle.x + 5;
+            } 
+            if(circle.x === c.width - circle.r){
+                if(circle.y < c.height - circle.r){
+                    circle.y = circle.y +10
+                    
+                }else {
+                    circle.y = c.height - circle.r
+                }
+                
+            }
+
+
+            console.log("RequestAnimationFrame fungerer")
+            requestAnimationFrame(frames)
+        }
+        // kaller frames()-funksjon første gang:
+        frames()
+    </script>
+    
+</body>
+</html>
