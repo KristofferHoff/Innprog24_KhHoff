@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nummer gjetting spillet</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            width: 50px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gjett et nummer</h1>
+    <p>Gjett et tall mellom 0 og 100</p>
+    <section>
+        <input type="number" max="100" min="0" id="gjett">
+        <button onclick="sjekksvar()">Send inn!</button>
+        <div id="resultat"></div>
+    </section>
+
+    <script>
+        let tilfeldigtall = Math.floor(Math.random() * 100 +1);
+        let forsøk = 0
+
+        function sjekksvar() {
+            const userGuess = parseInt(document.getElementById('gjett').value);
+            attempts++;
+            const resultDiv = document.getElementById('result');
+
+            if (userGuess === randomNumber) {
+                resultDiv.innerHTML = `Gratulerer du gjettet riktig nummer ${randomNumber} in ${attempts} attempts!`;
+            } else if (userGuess < randomNumber) {
+                resultDiv.innerHTML = 'Too low! Try again.';
+            } else {
+                resultDiv.innerHTML = 'Too high! Try again.';
+            }
+        }
+        
+    </script>
+   
+    
+</body>
+</html>
