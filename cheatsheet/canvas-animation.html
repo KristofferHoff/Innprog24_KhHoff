@@ -36,7 +36,7 @@
 
         //spillkomfigurasjon:
         const game = {
-            speed: 3,
+            speed: 1,
             count: 0
         }
 
@@ -110,7 +110,7 @@
 
         //funskjon for randomisering:
         function randomMinMax(min, max){
-            return math.floor(math.random() * (max - min +1) + min)
+            return Math.floor(Math.random() * (max - min +1) + min)
         }
 
         // rekursiv funksjon som kaller seg selv avhengig av skjerm/nettleser den vises i
@@ -158,12 +158,12 @@
             if(hero.x + hero.w > goldmountain.x && 
                 hero.x < goldmountain.x + goldmountain.w &&
                  hero.y + hero.h > goldmountain.y &&
-                  hero.y > goldmountain.y + goldmountain.h)
+                  hero.y < goldmountain.y + goldmountain.h)
                   {
                     console.log(game.count)
-                    hero.x = randomMinMax(0, c.width - hero.w)
-                    hero.y = randomMinMax(0, c.height - hero.h)
-                    game.count = game.count +1
+                    hero.x = randomMinMax(0, c.width - hero.w);
+                    hero.y = randomMinMax(0, c.height - hero.h);
+                    game.count = game.count +1;
 s                  }
             
 
