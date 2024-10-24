@@ -34,11 +34,83 @@
         const RequestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || window.
         mozRequestAnimationFrame
 
+        //spillkomfigurasjon:
+        const game = {
+            speed: 3,
+            count: 0
+        }
+
         //definer startpunkter:
-        const circle = {
+        const hero = {
         x: 100,
         y: 100,
-        r: 15
+        w: 15,
+        h: 15
+        }
+
+        //definer gullfjellet:
+        const goldmountain = {
+            x: c.width / 2 -25,
+            y: c.height / 2 -25,
+            w: 50,
+            h: 50
+        }
+
+        //definerer variabler for å skjekke om en rettning er aktiv:
+        let up = false;
+        let down = false
+        let right = false 
+        let left = false
+
+        //skjekk om en rettning blir aktivert  med en piltast:
+        document.addEventListener("keydown", function(event) {
+            if(event.key === "d" || event.key === "ArrowRight" ){
+            right = true
+            }
+            if(event.key === "s" || event.key === "ArrowDown" ){
+                down = true
+            }
+            if(event.key === "a" || event.key === "ArrowLeft" ){
+                left = true
+            }
+            if(event.key === "w" || event.key === "ArrowUp" ){
+                up = true
+            }
+            if(event.key === "h"){
+                game.speed = 10
+            }
+
+        })
+
+        document.addEventListener("keyup", function(event) {
+        if(event.key === "d" || event.key === "ArrowRight" ){
+            right = false
+            }
+            if(event.key === "s" || event.key === "ArrowDown" ){
+                down = false
+            }
+            if(event.key === "a" || event.key === "ArrowLeft" ){
+                left = false
+            }
+            if(event.key === "w" || event.key === "ArrowUp" ){
+                up = false      }
+            if(event.key === "h"){
+                game.speed = 3
+            }
+        })
+
+        //funsksjon for å tegne firkanter
+        function drawRect(x = 0, y = 0, w = 10, h = 10, color = "#000000"){
+          ctx.beginPath();
+            ctx.rect(x,y,w,h);
+            ctx.fillstyle = color;
+            ctx.fill()
+            ctx.closePath();
+        }
+
+        //funskjon for randomisering:
+        function randomMinMax(min, max){
+            return math.floor(math.random() * (max - min +1) + min)
         }
 
         // rekursiv funksjon som kaller seg selv avhengig av skjerm/nettleser den vises i
@@ -47,27 +119,57 @@
             ctx.clearRect(0, 0, c.width,c.height)
 
            
-            //tegne en sirkel: 100, 100 betyr plassering på canvas (cordinater) (første tallet forteller x aksen og derfor andre tallet y aksen) 15 tallet er piksler størelse på sirkelen.
-            ctx.beginPath();
-            ctx.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.closePath();
-            
-            //rekursivt kall: altså kalle på seg selv
-            if(circle.x < c.width - circle.r){
-                circle.x = circle.x + 5;
-            } 
-            if(circle.x === c.width - circle.r){
-                if(circle.y < c.height - circle.r){
-                    circle.y = circle.y +10
-                    
-                }else {
-                    circle.y = c.height - circle.r
-                }
-                
+            //tegne helten: 100, 100 betyr plassering på canvas (cordinater) (første tallet forteller x aksen og derfor andre tallet y aksen) 15 tallet er piksler størelse på sirkelen.
+            drawRect(hero.x ,hero.y ,hero.w ,hero.h, "#6ea100")
+            //tegne hinder
+            drawRect(goldmountain.x, goldmountain.y, goldmountain.w , goldmountain.h, "orange")
+            //tegne/skrive ut count
+            ctx.font = "30px Arial"
+            ctx.fillstyle = "#000000"
+            ctx.fillText(game.count, 10, 60)
+         
+         
+         
+         
+         
+         
+            //skjekker etter bevegelse 
+            right ? hero.x = hero.x + game.speed  : null
+            left ? hero.x = hero.x - game.speed: null
+            up ? hero.y = hero.y - game.speed : null
+            down ? hero.y = hero.y + game.speed: null
+
+            // skjekker om firkant er utenfor canvaset:
+            if(hero.x < 0){
+                hero.x = c.width
+            }
+            if(hero.x > c.width){
+                hero.x = 0
+            }
+            if(hero.y < 0){
+                hero.y = c.height
+            }
+            if(hero.y > c.height){
+                hero.y = 0
             }
 
 
+            //skjekker om "helten" koliderer med orange firkant
+            if(hero.x + hero.w > goldmountain.x && 
+                hero.x < goldmountain.x + goldmountain.w &&
+                 hero.y + hero.h > goldmountain.y &&
+                  hero.y > goldmountain.y + goldmountain.h)
+                  {
+                    console.log(game.count)
+                    hero.x = randomMinMax(0, c.width - hero.w)
+                    hero.y = randomMinMax(0, c.height - hero.h)
+                    game.count = game.count +1
+s                  }
+            
+
+
+            
+          //testutskrift for request animationframe funker:
             console.log("RequestAnimationFrame fungerer")
             requestAnimationFrame(frames)
         }
