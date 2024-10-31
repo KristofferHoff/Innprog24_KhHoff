@@ -50,10 +50,10 @@
 
     <form>
         <label>Poeng på eksamens oppgave 1</label>
-        <input id="oppgave1" type="number" max="10" required>
+        <input id="oppgave1" type="number" max="10" min="0" required>
 
         <label> Poeng på eksamens oppgave 2</label>
-        <input id="oppgave2" type="number" max="12" required>
+        <input id="oppgave2" type="number" max="12" min="0" required>
 
         <button type="button" onClick="calculate()">Beregn karakter</button>
 
@@ -68,8 +68,6 @@
 
     <script>
 
-       
-
 const grades = [
     {grade: "F", treshold: 0},
     {grade: "E", treshold: 25},
@@ -79,9 +77,6 @@ const grades = [
     {grade: "A", treshold: 100}
    ]
 
-/*console.log(grades[5].treshold); */
-
-/*(0.3 * (PoengOppgave1 / MaksimaltPoengOppgave1 * 100)) + (0.7 * (PoengOppgave2 / MaksimaltPoengOppgave2 * 100))*/
 
 function calculate(){
 
@@ -99,26 +94,27 @@ if (oppgave1 === "" || oppgave2 === "") {
 const MaksimaltPoengOppgave1 = 10
 const MaksimaltPoengOppgave2 = 12
     
-       /*if (grade > 24){
-                text = `du får karakter ${grade} med ${treshold} poeng`
-          } 
-         else if (grade = "E"){
-                if(treshold > 44){ 
-                    text = `Du får ${grade} med ${treshold} poeng`
-                } else(treshold > 68) {
-                    text = `Du får ${grade} med ${treshold} poeng`
-                }
-            } else(treshold > 88) {
-                text = `Du får ${grade} med ${treshold} poeng`
-            } if(treshold > 100){
-                text = 'Du får' ${grade} 'med' ${treshold} 'poeng'
-            }
-            document.getElementById("karakter").innerHTML = text*/
-
 
         const karakter = document.getElementById("Karakter");
         const utregning =(0.3 * (oppgave1 / MaksimaltPoengOppgave1 * 100)) + (0.7 * (oppgave2 / MaksimaltPoengOppgave2 * 100))
         console.log(utregning + "yupp")
+
+                if (utregning < grades[1].treshold) {
+            karakter.innerHTML = `${grades[0].grade}`
+        } else if (utregning < grades[2].treshold) {
+            karakter.innerHTML = `${grades[1].grade}`
+        } else if (utregning < grades[3].treshold) {
+            karakter.innerHTML = `${grades[2].grade}`
+        } else if (utregning < grades[4].treshold) {
+            karakter.innerHTML = `${grades[3].grade}`
+        } else if (utregning < grades[5].treshold) {
+            karakter.innerHTML = `${grades[4].grade}`
+        } else {
+            karakter.innerHTML = `${grades[5].grade}`
+        }
+
+        
+    /*
             if(utregning < grades[1].treshold){
                 karakter.innerHTML = `${grades[0].grade}`
                 console.log("Den første if'en er sann")
@@ -135,30 +131,19 @@ const MaksimaltPoengOppgave2 = 12
                 karakter.innerHTML = `${grades[3].grade}`
                 console.log("Den fjerde if'en er sann")
             }
-           else if(utregning <= grades[4].treshold && utregning < grades[5].treshold){
+            else if(utregning <= grades[4].treshold && utregning < grades[5].treshold){
                 karakter.innerHTML = `${grades[4].grade}`
                 console.log("Den femte if'en er sann")
             }
-            else if(utregning <= grades[5].treshold)
+            else if(utregning == grades[5].treshold) {
                 karakter.innerHTML = `${grades[5].grade}`
                 console.log("Den sjette if'en er sann")
+            }
+                */
+
     console.log(grades);
+
 }
-
-   
-   
-    calculate()
-
-
-
-
-/*for (let i = 0; 1 < 6; i++){
-    console.log(arrayOfObjects[i])
-    
-}*/
-
-
-
 
     </script>
 </body>
